@@ -1,0 +1,197 @@
+:root {
+    --primary-color: #ff6f61; /* Vibrant Coral */
+    --secondary-color: #4b4453; /* Deep Plum */
+    --progress-bg: #e0e0e0;
+    --progress-fill: linear-gradient(90deg, #ff6f61, #ff9671);
+    --overlay-color: rgba(0, 0, 0, 0.6);
+    --button-hover: #ff9671;
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Pacifico', cursive;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.steps-container {
+    min-height: 100vh;
+    background-image: url('../images/can.jpg'); /* Birthday-themed image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 60px 20px;
+}
+
+.steps-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: 1;
+    backdrop-filter: blur(5px);
+}
+
+.steps-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 50px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.steps-content h2 {
+    font-family: var(--font-secondary);
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Step Indicators */
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.step-indicators .step-indicator {
+    width: 40px;
+    height: 40px;
+    background-color: var(--progress-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.step-indicators .step-indicator.active {
+    background: var(--progress-fill);
+}
+
+.step-indicators .step-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    width: 40px;
+    height: 4px;
+    background-color: var(--progress-bg);
+    z-index: -1;
+}
+
+.step-indicators .step-indicator:last-child::after {
+    display: none;
+}
+
+/* Progress Bar */
+.progress {
+    height: 25px;
+    background-color: var(--progress-bg);
+    border-radius: 12.5px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--progress-fill);
+    width: 0%;
+    transition: width 0.6s ease;
+}
+
+/* Steps */
+.step {
+    display: none;
+    animation: slideIn 0.5s forwards;
+}
+
+.step.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.step p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: var(--secondary-color);
+}
+
+.btn-rectangular {
+    border-radius: 0; /* Rectangular shape */
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.btn-rectangular:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.btn-rectangular i {
+    margin-left: 8px;
+}
+
+.btn-rectangular:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.5);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .steps-content {
+        padding: 30px;
+    }
+
+    .steps-content h2 {
+        font-size: 2rem;
+    }
+
+    .step p {
+        font-size: 1rem;
+    }
+
+    .btn-rectangular {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .step-indicators .step-indicator {
+        width: 30px;
+        height: 30px;
+    }
+}
